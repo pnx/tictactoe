@@ -39,12 +39,12 @@ bool Square::hasPiece(int piece_type)
 char Square::getMarker()
 {
 	switch(piece_type) {
-		case CIRCLE_PIECE :
-			return M_CIRCLE;
-		case CROSS_PIECE :
-			return M_CROSS;
-		default :
-			return M_EMPTY;
+    case CIRCLE_PIECE :
+        return M_CIRCLE;
+    case CROSS_PIECE :
+        return M_CROSS;
+    default :
+        return M_EMPTY;
 	}
 }
 

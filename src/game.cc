@@ -70,7 +70,7 @@ void Game::play(void) {
 			board->display();
 			
 			// Check if player has won.
-			if(player[i]->isWinner()) {
+			if (player[i]->isWinner()) {
 				cout << endl << player[i]->getPiece() 
 					 << " won in " << moves << " moves!" << endl;
 				loop = false;

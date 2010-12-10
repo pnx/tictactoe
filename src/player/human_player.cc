@@ -32,12 +32,12 @@ void Human_Player::makeMove()
 	// Hold the position of the square that should be moved to
 	int to;
 	
-	if(board->numberOfPieces(piece_type) < 3) {
+	if (board->numberOfPieces(piece_type) < 3) {
 		
 		do {
 			cout << "to where? a number in the range [0-8]: ";
 			cin  >> to;
-		} while(! board->isFree(to));
+		} while(!board->isFree(to));
 		
 	} else {
 	
@@ -45,7 +45,7 @@ void Human_Player::makeMove()
 			cout << "from where to where? two numbers in the range [0-8]: ";
 			cin  >> from 
 				 >> to;
-		} while(! board->isFree(to) || ! board->hasPiece(from, piece_type));
+		} while(!board->isFree(to) || !board->hasPiece(from, piece_type));
 	
 		board->delPiece(from);
 	}

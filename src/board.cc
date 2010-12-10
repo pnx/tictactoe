@@ -28,7 +28,7 @@ Board::~Board()
 
 bool Board::validSquare(int position)
 {
-	if(position < 0 || position >= N_SQUARES) {
+	if (position < 0 || position >= N_SQUARES) {
 		cerr << "ERROR: invalid square index " << position << endl;
 		return false;
 	}
@@ -44,8 +44,8 @@ int Board::numberOfPieces(int piece_type)
 	for(i=0; i < N_SQUARES; i++) {
 		
 		// count this square if matched
-		if(square[i].hasPiece(piece_type))
-			if(++m == 3) break;
+		if (square[i].hasPiece(piece_type) && ++m == 3)
+			break;
 	}
 	
 	return m;
@@ -53,7 +53,7 @@ int Board::numberOfPieces(int piece_type)
 
 void Board::setPiece(int position, int piece_type)
 {
-	if(! validSquare(position))
+	if (!validSquare(position))
 		return;
 
     square[position].setPiece(piece_type);
@@ -61,7 +61,7 @@ void Board::setPiece(int position, int piece_type)
 
 void Board::delPiece(int position)
 {
-    if(! validSquare(position))
+    if (!validSquare(position))
 		return;
 		
 	square[position].setFree();
@@ -69,7 +69,7 @@ void Board::delPiece(int position)
 
 bool Board::isFree(int position)
 {
-	if(! validSquare(position))
+	if (!validSquare(position))
 		return false;
 	
 	return square[position].isFree();
@@ -77,7 +77,7 @@ bool Board::isFree(int position)
 
 bool Board::hasPiece(int position, int piece_type)
 {
-	if(! validSquare(position))
+	if (!validSquare(position))
 		return false;
 		
 	return square[position].hasPiece(piece_type);
@@ -85,10 +85,10 @@ bool Board::hasPiece(int position, int piece_type)
 
 bool Board::hasCounterPiece(int position, int piece_type)
 {
-	if(! validSquare(position))
+	if (!validSquare(position))
 		return false;
 	
-	return ! square[position].isFree() && ! square[position].hasPiece(piece_type);
+	return !square[position].isFree() && !square[position].hasPiece(piece_type);
 }
 
 bool Board::checkPattern(int piece_type) 
@@ -97,18 +97,18 @@ bool Board::checkPattern(int piece_type)
 	
 	for(i=0; i < 3; i++) {
 		for(j=0; j < 3; j++) {
-			if(! square[(i*3)+j].hasPiece(piece_type))
+			if (!square[(i*3)+j].hasPiece(piece_type))
 				break;
 			
-			if(j == 2)
+			if (j == 2)
 				return true;
 		}
 
 		for(j=0; j < 3; j++) {
-			if(! square[i+(j*3)].hasPiece(piece_type))
+			if (!square[i+(j*3)].hasPiece(piece_type))
 				break;
 			
-			if(j == 2)
+			if (j == 2)
 				return true;
 		}
 	}
@@ -116,18 +116,18 @@ bool Board::checkPattern(int piece_type)
 	/* Diagonal */
 	
 	for(i=0; i < 3; i++) {
-		if(! square[4*i].hasPiece(piece_type))
+		if (!square[4*i].hasPiece(piece_type))
 			break;
 		
-		if(i == 2)
+		if (i == 2)
 			return true;
 	}
 	
 	for(i=1; i <= 3; i++) {
-		if(! square[2*i].hasPiece(piece_type))
+		if (!square[2*i].hasPiece(piece_type))
 			break;
 			
-		if(i == 3)
+		if (i == 3)
 			return true;
 	}
 	
@@ -148,7 +148,7 @@ void Board::display()
 		cout << "| " << square[i].getMarker() << " ";
 		
 		/* For every third square, close it and draw line-break */
-		if((i+1) % 3 == 0) {
+		if ((i+1) % 3 == 0) {
 			cout << "|" << endl 
 			     << "+---+---+---+" << endl;
 	    }
