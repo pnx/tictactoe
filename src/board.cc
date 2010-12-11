@@ -38,8 +38,7 @@ bool Board::validSquare(int position)
 
 int Board::numberOfPieces(int piece_type) 
 {
-	int i;
-	int m = 0;
+	int i, m = 0;
 	
 	for(i=0; i < N_SQUARES; i++) {
 		
@@ -136,13 +135,11 @@ bool Board::checkPattern(int piece_type)
 
 void Board::display() 
 {
-	int i;
-	
 	/* Draw beginning line */
 	cout << "+---+---+---+" << endl;
 
 	/* For each square */
-	for(i=0; i < N_SQUARES; i++) {
+	for(int i=0; i < N_SQUARES; i++) {
 		
 		/* Draw square */
 		cout << "| " << square[i].getMarker() << " ";

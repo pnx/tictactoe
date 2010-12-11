@@ -44,8 +44,6 @@ Game::~Game()
 
 void Game::play(void) {
 	
-	int i;
-	
 	/* Holds the count of how many moves have been played */
 	int moves = 0;
 	
@@ -60,7 +58,7 @@ void Game::play(void) {
 		
 		moves++;
 		
-		for(i=0; i < N_PLAYERS; i++) {
+		for(int i=0; i < N_PLAYERS; i++) {
 			
 			// let the player make a move
 			player[i]->makeMove();

@@ -54,13 +54,11 @@ Computer_Player::~Computer_Player()
 
 int Computer_Player::aiBestMove(int index = -1)
 {
-	int i;
-		
 	/* Ordered list of best squares, 
 	   best square first */
 	int squares[9] = { 4, 0, 2, 6, 8, 1, 3, 7, 5 };
 	
-	for(i=0; i < 9; i++) {
+	for(int i=0; i < 9; i++) {
 		
 		if (squares[i] == index)
 			continue;
