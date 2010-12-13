@@ -28,13 +28,7 @@ class Square
 {
 private:
 	
-	/* flag to indicate if a square is free or not */  
-	bool free;
-	
-	/* the type of piece stored on the square if the 
-	   square is not free, in this case the admissible 
-	   values are CROSS_PIECE and CIRCLE_PIECE, 
-	   otherwise the value NO_PIECE is used */ 
+	// *_PIECE Constants
 	int piece_type;
 
 public:
@@ -45,7 +39,7 @@ public:
 	void setFree();
 	
 	/* isFree: returns true if square is free, false otherwise. */
-	bool isFree() { return free; };
+	bool isFree();
 	
 	/* setPiece: set this square as piece_type */
 	void setPiece(int piece_type);

@@ -19,21 +19,24 @@ Square::Square()
 	setFree();
 }
 
+bool Square::isFree()
+{
+    return piece_type == NO_PIECE;
+}
+
 void Square::setFree() 
 {
-	free = 1;
 	piece_type = NO_PIECE;
 }
 
 void Square::setPiece(int piece_type) 
 {
-	free = 0;
 	this->piece_type = piece_type;
 }
 
 bool Square::hasPiece(int piece_type) 
 {
-	return this->piece_type == piece_type && free == 0;
+	return this->piece_type == piece_type;
 }
 
 char Square::getMarker()
