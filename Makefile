@@ -3,7 +3,7 @@
 #
 
 CXX 	 = g++
-CXXFLAGS = -Werror
+CXXFLAGS = -Wall -Werror
 
 program = tic_tac
 
