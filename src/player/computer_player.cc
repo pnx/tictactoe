@@ -18,11 +18,13 @@
 #include <cstdlib> /* used for RNG */
 #include <ctime>
 
-/* sleep() */
+// msleep() - milliseconds sleep
 #ifdef _WIN32
 #include <windows.h>
+#define msleep(x) Sleep(x)
 #else
-#include <unistd.h> 
+#include <unistd.h>
+#define msleep(x) usleep((x) * 1000)
 #endif
 
 using std::cerr;
@@ -82,13 +84,8 @@ int Computer_Player::aiRandom()
 		position = rand() % N_SQUARES;
 			
 		// rest some time to free CPU cycles to the operating system
-#ifdef _WIN32
-		// milliseconds
-		Sleep(1);
-#else
-		// microseconds
-		usleep(1000);
-#endif	
+        msleep(1);
+        
 	} while(!board->hasPiece(position, piece_type));
 	
 	return position;
