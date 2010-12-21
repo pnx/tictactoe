@@ -1,2 +1,8 @@
 *.o
 tic_tac
+
+# buildsystem files.
+Makefile
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles/*
