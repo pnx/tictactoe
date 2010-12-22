@@ -19,12 +19,14 @@
 #include <ctime>
 
 // msleep() - milliseconds sleep
-#ifdef _WIN32
+#if HAVE_UNISTD_H
+#include <unistd.h>
+#define msleep(x) usleep((x) * 1000)
+#elif HAVE_WINDOWS_H
 #include <windows.h>
 #define msleep(x) Sleep(x)
 #else
-#include <unistd.h>
-#define msleep(x) usleep((x) * 1000)
+#error missing sleep function
 #endif
 
 using std::cerr;
