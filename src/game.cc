@@ -21,8 +21,10 @@
 using std::cout;
 using std::endl;
 
-Game::Game()
+void Game::Init()
 {
+    moves = 0;
+    
 	// create a board
 	board = new Board();
 	
@@ -35,45 +37,23 @@ Game::Game()
 	player[1]->setBoard(board);
 }
 
-Game::~Game()
+void Game::Exit()
 {
 	delete player[0];
 	delete player[1];
 	delete board;
 }
 
-void Game::play(void) {
-	
-	/* Holds the count of how many moves have been played */
-	int moves = 0;
-	
-	/* flag to break the main loop */
-	bool loop = true;
-	
-	// Begin by drawing the board
-	board->display();
-	
-	// Main loop
-	while(loop) {
-		
-		moves++;
-		
-		for(int i=0; i < N_PLAYERS; i++) {
-			
-			// let the player make a move
-			player[i]->makeMove();
-			
-			// Display the move on screen
-			cout << player[i]->getPiece() << " move:" << endl;
-			board->display();
-			
-			// Check if player has won.
-			if (player[i]->isWinner()) {
-				cout << endl << player[i]->getPiece() 
-					 << " won in " << moves << " moves!" << endl;
-				loop = false;
-				break;
-			}
-		}
-	}
+void Game::Update()
+{
+    if (mouse.state == SDL_RELEASED && mouse.button == SDL_BUTTON_LEFT) {
+        moves++;
+        cout << "Moves: " << moves << endl;
+    }
 }
+
+void Game::Render(SDL_Surface *screen)
+{
+    /* Nothing to render */
+}
+    

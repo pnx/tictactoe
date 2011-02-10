@@ -17,9 +17,15 @@ endif ()
 
 find_package(SDL)
 
-set (sources src/main.cc src/game.cc src/board.cc src/square.cc src/player/player.cc
-             src/player/human_player.cc src/player/computer_player.cc)
-set (libs ${SDL_LIBRARY})
+if (SDL_FOUND)
+    include_directories(${SDL_INCLUDE_DIR})
+    set (libs ${libs} ${SDL_LIBRARY})
+endif ()
 
-add_executable(tic_tac ${sources})
+set (src_engine src/Engine/engine.cc)
+
+set (src_game src/main.cc src/game.cc src/board.cc src/square.cc src/player/player.cc
+              src/player/human_player.cc src/player/computer_player.cc)
+
+add_executable(tic_tac ${src_game} ${src_engine})
 target_link_libraries(tic_tac ${libs})

@@ -11,23 +11,14 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <iostream>
 #include "game.h"
 
-using namespace std;
+int main(int argc, char *argv[]) {
 
-int main(void) {
+	Game game;
 
-	Game *game = new Game();
-	
-	// Print a nice welcome message
-	cout << "Welcome to tic-tac-toe!" << endl;
-	
 	// Run the game
-	game->play();
-	
-	// cleanup
-	delete game;
+	game.Start();
 	
 	return 0;
 }
