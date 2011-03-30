@@ -35,6 +35,10 @@ void Game::Init()
 	// pass board to players
 	player[0]->setBoard(board);
 	player[1]->setBoard(board);
+
+    txt = new Texture("resources/bg.png");
+    txt1 = new Texture("resources/circle.png");
+    txt2 = new Texture("resources/cross.png");
 }
 
 void Game::Exit()
@@ -42,6 +46,9 @@ void Game::Exit()
 	delete player[0];
 	delete player[1];
 	delete board;
+	delete txt;
+	delete txt1;
+	delete txt2;
 }
 
 void Game::Update()
@@ -52,8 +59,9 @@ void Game::Update()
     }
 }
 
-void Game::Render(SDL_Surface *screen)
+void Game::Render()
 {
-    /* Nothing to render */
+    txt->Draw(0, 0);
+    txt1->Draw(txt->getWidth() + 1, 0);
+    txt2->Draw((txt1->getWidth() + 1) * 2, 0);
 }
-    

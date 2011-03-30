@@ -22,7 +22,15 @@ if (SDL_FOUND)
     set (libs ${libs} ${SDL_LIBRARY})
 endif ()
 
-set (src_engine src/Engine/engine.cc)
+find_package(OpenGL)
+
+if (OPENGL_FOUND) 
+    set (libs ${libs} ${OPENGL_LIBRARY})
+endif ()
+
+set (libs ${libs} -lSDL_image)
+
+set (src_engine src/Engine/engine.cc src/Engine/Graphics/Graphics.cc src/Engine/Graphics/Texture.cc)
 
 set (src_game src/main.cc src/game.cc src/board.cc src/square.cc src/player/player.cc
               src/player/human_player.cc src/player/computer_player.cc)

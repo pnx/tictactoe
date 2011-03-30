@@ -7,44 +7,13 @@ using std::endl;
 
 Engine::Engine()
 {
-    screen = NULL;
-    
-	// Initialize SDL video
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		cerr << "Unable to init SDL: " << SDL_GetError() << endl;
-		exit(1);
-	}
-
-    SetSize(480, 640);
+    graphics = new Graphics(640, 480, 16);
+    isActive = false;
 }
 
 Engine::~Engine()
 {
-    if (screen) {
-        SDL_FreeSurface(screen);
-    }
-    SDL_Quit();
-}
-
-void Engine::SetSize(int height, int width)
-{
-    height = (unsigned) height;
-    width = (unsigned) width;
-    
-    SDL_Surface *newscreen = SDL_SetVideoMode(width, height, 0, SDL_SWSURFACE);
-	if (newscreen == NULL) {
-        if (screen == NULL) {
-            cerr << "Unable to set up video: " << SDL_GetError() << endl;
-            exit(1);
-        }
-        cerr << "Unable to change size: " << SDL_GetError() << endl;
-        return;
-	}
-    
-    if (screen) {
-        SDL_FreeSurface(screen);
-    }
-    screen = newscreen;
+    delete graphics;
 }
 
 void Engine::Start() {
@@ -92,11 +61,9 @@ void Engine::HandleInput()
 
 void Engine::DoRender()
 {
-    SDL_FillRect(screen, 0, SDL_MapRGB(screen->format, 0, 0, 0));
+    Render();
 
-    Render(screen);
-
-    SDL_Flip(screen);
+    graphics->Draw();
 }
 
 void Engine::DoUpdate()

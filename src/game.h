@@ -14,6 +14,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "Engine/Graphics/Texture.h"
 #include "Engine/engine.h"
 #include "board.h"
 #include "player/player.h"
@@ -32,11 +33,15 @@ private :
 	/* set of players */
 	Player *player[N_PLAYERS];
 	
+	Texture *txt;
+	Texture *txt1;
+	Texture *txt2;
+	
 public :
 
 	void Init();
     void Update();
-    void Render(SDL_Surface *screen);
+    void Render();
     void Exit();
 };
 
