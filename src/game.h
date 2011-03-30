@@ -15,7 +15,7 @@
 #define GAME_H
 
 #include "Engine/Graphics/Texture.h"
-#include "Engine/engine.h"
+#include "Engine/Engine.h"
 #include "board.h"
 #include "player/player.h"
 
