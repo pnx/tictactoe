@@ -98,6 +98,10 @@ void Graphics::ResizeScreen(int width, int height)
     this->screen = newscreen;
 
     InitGL();
+
+#ifndef NDEBUG
+    std::cout << "Windowsize: " << this->width << "x" << this->height << std::endl;
+#endif
 }
 
 void Graphics::Draw()
