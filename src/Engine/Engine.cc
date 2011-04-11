@@ -55,6 +55,9 @@ void Engine::HandleInput()
             mouse.y = event.motion.y;
             mouse.state = event.button.state;
             break;
+        case SDL_VIDEORESIZE:
+            graphics->ResizeScreen(event.resize.w, event.resize.h);
+            break;
         }
     }
 }
