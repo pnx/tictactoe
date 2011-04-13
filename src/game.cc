@@ -60,6 +60,7 @@ void Game::Update()
     if (mouse.state == SDL_RELEASED && mouse.button == SDL_BUTTON_LEFT) {
         moves++;
         cout << "Moves: " << moves << endl;
+        cout << "Mouse cords: x = " << mouse.x << ", y = " << mouse.y << endl;
 
         // shift middle square between two pieces.
         // (just to make something happend on input)
