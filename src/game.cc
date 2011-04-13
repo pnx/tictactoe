@@ -60,6 +60,14 @@ void Game::Update()
     if (mouse.state == SDL_RELEASED && mouse.button == SDL_BUTTON_LEFT) {
         moves++;
         cout << "Moves: " << moves << endl;
+
+        // shift middle square between two pieces.
+        // (just to make something happend on input)
+        if (board->hasPiece(4, CROSS_PIECE)) {
+            board->setPiece(4, CIRCLE_PIECE);
+        } else {
+            board->setPiece(4, CROSS_PIECE);
+        }
     }
 }
 
