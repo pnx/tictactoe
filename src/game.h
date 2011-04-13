@@ -33,9 +33,9 @@ private :
 	/* set of players */
 	Player *player[N_PLAYERS];
 	
-	Texture *txt;
-	Texture *txt1;
-	Texture *txt2;
+	Texture *bg;
+	Texture *cross;
+	Texture *circle;
 	
 public :
 

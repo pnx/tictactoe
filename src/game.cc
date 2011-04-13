@@ -27,6 +27,10 @@ void Game::Init()
     
 	// create a board
 	board = new Board();
+
+    // set some squares on the board
+    board->setPiece(2, CROSS_PIECE);
+    board->setPiece(6, CIRCLE_PIECE);
 	
 	// create players
 	player[0] = new Human_Player(CROSS_PIECE);
@@ -36,9 +40,9 @@ void Game::Init()
 	player[0]->setBoard(board);
 	player[1]->setBoard(board);
 
-    txt = new Texture("resources/bg.png");
-    txt1 = new Texture("resources/circle.png");
-    txt2 = new Texture("resources/cross.png");
+    bg = new Texture("resources/bg.png");
+    cross = new Texture("resources/circle.png");
+    circle = new Texture("resources/cross.png");
 }
 
 void Game::Exit()
@@ -46,9 +50,9 @@ void Game::Exit()
 	delete player[0];
 	delete player[1];
 	delete board;
-	delete txt;
-	delete txt1;
-	delete txt2;
+	delete bg;
+	delete cross;
+	delete circle;
 }
 
 void Game::Update()
@@ -61,7 +65,19 @@ void Game::Update()
 
 void Game::Render()
 {
-    txt->Draw(0, 0);
-    txt1->Draw(txt->getWidth() + 1, 0);
-    txt2->Draw((txt1->getWidth() + 1) * 2, 0);
+    // TODO: needs refactoring.
+    for(int i=0; i < N_SQUARES; i++) {
+
+        Texture *txt;
+
+        if (board->hasPiece(i, CROSS_PIECE)) {
+            txt = cross;
+        } else if (board->hasPiece(i, CIRCLE_PIECE)) {
+            txt = circle;
+        } else {
+            txt = bg;
+        }
+
+		txt->Draw((txt->getWidth() + 1) * (i % 3), (txt->getHeight() + 1) * (i / 3));
+	}
 }
