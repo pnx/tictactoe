@@ -6,4 +6,4 @@ Started as an assignment i wrote for a class in 2009. i decided to bring it back
 to the boring and not so good looking ASCII-art. Other than the "graphics", the game is working fine and
 even the AI is not so bad. so it's a kind of shame it only has ASCII-art.
 
-SDL is most likely to be used, don't need a full game engine.
+The game now uses a tiny SDL/OpenGL based 2D game engine.
