@@ -19,6 +19,8 @@ public:
     ~Graphics();
 
     void ResizeScreen(int width, int height);
+
+    void ClearScreen();
     
     void Draw();
 };

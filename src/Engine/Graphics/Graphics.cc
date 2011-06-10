@@ -54,7 +54,7 @@ void Graphics::InitGL()
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
-    glEnable(GL_BLEND); 
+    glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glLoadIdentity();
@@ -102,6 +102,11 @@ void Graphics::ResizeScreen(int width, int height)
 #ifndef NDEBUG
     std::cout << "Windowsize: " << this->width << "x" << this->height << std::endl;
 #endif
+}
+
+void Graphics::ClearScreen()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Graphics::Draw()
