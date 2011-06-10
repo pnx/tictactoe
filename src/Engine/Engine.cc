@@ -79,7 +79,6 @@ void Engine::HandleInput()
             break;
         case SDL_VIDEOEXPOSE:
             // Rerender screen
-            graphics->ClearScreen();
             DoRender();
             break;
         }
@@ -88,6 +87,7 @@ void Engine::HandleInput()
 
 void Engine::DoRender()
 {
+    graphics->ClearScreen();
     Render();
     graphics->Draw();
 }
