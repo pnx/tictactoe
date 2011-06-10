@@ -9,6 +9,8 @@ Engine::Engine()
 {
     graphics = new Graphics(640, 480, 16);
     isActive = false;
+    FixedStep = true;
+    FixedStepInterval = 10;
 }
 
 Engine::~Engine()
@@ -20,20 +22,37 @@ void Engine::Start() {
 
     Init();
 
+    LastTick = SDL_GetTicks();
+
     isActive = true;
-    for(;;) {
-        HandleInput();
-
-        if (!isActive) {
-            break;
+    while(isActive) {
+        if (FixedStep) {
+            long delta = SDL_GetTicks() - LastTick;
+            if (delta >= FixedStepInterval) {
+                Tick();
+            }
+        } else {
+            Tick();
         }
-
-        // update and render
-        DoUpdate();
-        DoRender();
+        SDL_Delay(1);
     }
 
     Exit();
+}
+
+void Engine::Tick()
+{
+    HandleInput();
+
+    if (!isActive) {
+        return;
+    }
+
+    // update and render
+    DoUpdate();
+    DoRender();
+
+    LastTick = SDL_GetTicks();
 }
 
 void Engine::HandleInput()
@@ -70,7 +89,6 @@ void Engine::HandleInput()
 void Engine::DoRender()
 {
     Render();
-
     graphics->Draw();
 }
 

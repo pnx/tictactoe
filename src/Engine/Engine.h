@@ -14,17 +14,23 @@ typedef struct {
 class Engine
 {
 private:
+    long LastTick;
+
+    void Tick();
     void HandleInput();
     void DoRender();
     void DoUpdate();
 protected:
     bool isActive;
+    /* If the engine is running in fixed time step mode */
+    bool FixedStep;
+    unsigned FixedStepInterval;
     MouseState mouse;
     Graphics *graphics;
 public:
     Engine();
     ~Engine();
-    
+
     void Start();
     /* Extended constructor */
     virtual void Init() = 0;
