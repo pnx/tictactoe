@@ -19,7 +19,7 @@ Engine::~Engine()
 void Engine::Start() {
 
     Init();
-    
+
     isActive = true;
     for(;;) {
         HandleInput();
@@ -42,7 +42,7 @@ void Engine::HandleInput()
 
     mouse.button = 0;
     mouse.state = 0;
-    
+
     while(SDL_PollEvent(&event)) {
 
         switch(event.type) {
@@ -57,6 +57,11 @@ void Engine::HandleInput()
             break;
         case SDL_VIDEORESIZE:
             graphics->ResizeScreen(event.resize.w, event.resize.h);
+            break;
+        case SDL_VIDEOEXPOSE:
+            // Rerender screen
+            graphics->ClearScreen();
+            DoRender();
             break;
         }
     }
