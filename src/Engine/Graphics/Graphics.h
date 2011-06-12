@@ -1,6 +1,6 @@
 
-#ifndef ENGINE_GRAPHICS_H
-#define ENGINE_GRAPHICS_H
+#ifndef ENGINE_GRAPHICS_GRAPHICS_H
+#define ENGINE_GRAPHICS_GRAPHICS_H
 
 #include "internal.h"
 
@@ -21,8 +21,8 @@ public:
     void ResizeScreen(int width, int height);
 
     void ClearScreen();
-    
+
     void Draw();
 };
 
-#endif /* ENGINE_GRAPHICS_H */
+#endif /* ENGINE_GRAPHICS_GRAPHICS_H */

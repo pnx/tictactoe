@@ -1,6 +1,6 @@
 
-#ifndef GRAPHICS_INTERNAL_H
-#define GRAPHICS_INTERNAL_H
+#ifndef ENGINE_GRAPHICS_INTERNAL_H
+#define ENGINE_GRAPHICS_INTERNAL_H
 
 #include <string>
 #include <iostream>
@@ -9,4 +9,4 @@
 #include "SDL_image.h"
 #include "SDL_opengl.h"
 
-#endif /* GRAPHICS_INTERNAL_H */
+#endif /* ENGINE_GRAPHICS_INTERNAL_H */
