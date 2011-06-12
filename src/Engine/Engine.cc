@@ -22,6 +22,8 @@ void Engine::Start() {
 
     Init();
 
+    SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
+
     LastTick = SDL_GetTicks();
 
     isActive = true;
@@ -59,20 +61,13 @@ void Engine::HandleInput()
 {
     SDL_Event event;
 
-    mouse.button = 0;
-    mouse.state = 0;
+    Mouse::Update();
 
     while(SDL_PollEvent(&event)) {
 
         switch(event.type) {
         case SDL_QUIT :
             isActive = false;
-            break;
-        case SDL_MOUSEBUTTONUP :
-            mouse.button = event.button.button;
-            mouse.x = event.motion.x;
-            mouse.y = event.motion.y;
-            mouse.state = event.button.state;
             break;
         case SDL_VIDEORESIZE:
             graphics->ResizeScreen(event.resize.w, event.resize.h);

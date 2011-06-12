@@ -24,13 +24,14 @@ endif ()
 
 find_package(OpenGL)
 
-if (OPENGL_FOUND) 
+if (OPENGL_FOUND)
     set (libs ${libs} ${OPENGL_LIBRARY})
 endif ()
 
 set (libs ${libs} -lSDL_image)
 
-set (src_engine src/Engine/Engine.cc src/Engine/Graphics/Graphics.cc src/Engine/Graphics/Texture.cc)
+set (src_engine src/Engine/Engine.cc src/Engine/Graphics/Graphics.cc src/Engine/Graphics/Texture.cc
+                src/Engine/Input/Mouse.cc)
 
 set (src_game src/main.cc src/game.cc src/board.cc src/square.cc src/player/player.cc
               src/player/human_player.cc src/player/computer_player.cc)

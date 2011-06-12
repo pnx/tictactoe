@@ -24,18 +24,18 @@ using std::endl;
 void Game::Init()
 {
     moves = 0;
-    
+
 	// create a board
 	board = new Board();
 
     // set some squares on the board
     board->setPiece(2, CROSS_PIECE);
     board->setPiece(6, CIRCLE_PIECE);
-	
+
 	// create players
 	player[0] = new Human_Player(CROSS_PIECE);
 	player[1] = new Computer_Player(CIRCLE_PIECE);
-	
+
 	// pass board to players
 	player[0]->setBoard(board);
 	player[1]->setBoard(board);
@@ -57,10 +57,12 @@ void Game::Exit()
 
 void Game::Update()
 {
-    if (mouse.state == SDL_RELEASED && mouse.button == SDL_BUTTON_LEFT) {
+    MouseState *mouse = Mouse::getState();
+
+    if (mouse->State == ButtonState::Up && mouse->Button == MouseButtons::Left) {
         moves++;
         cout << "Moves: " << moves << endl;
-        cout << "Mouse cords: x = " << mouse.x << ", y = " << mouse.y << endl;
+        cout << "Mouse cords: x = " << mouse->x << ", y = " << mouse->y << endl;
 
         // shift middle square between two pieces.
         // (just to make something happend on input)

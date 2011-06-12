@@ -3,13 +3,7 @@
 #define ENGINE_ENGINE_H
 
 #include "Graphics/Graphics.h"
-
-typedef struct {
-    int button;
-    int state;
-    int x;
-    int y;
-} MouseState;
+#include "Input/Mouse.h"
 
 class Engine
 {
@@ -25,7 +19,6 @@ protected:
     /* If the engine is running in fixed time step mode */
     bool FixedStep;
     unsigned FixedStepInterval;
-    MouseState mouse;
     Graphics *graphics;
 public:
     Engine();
