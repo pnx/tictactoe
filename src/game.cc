@@ -28,10 +28,6 @@ void Game::Init()
 	// create a board
 	board = new Board();
 
-    // set some squares on the board
-    board->setPiece(2, CROSS_PIECE);
-    board->setPiece(6, CIRCLE_PIECE);
-
 	// create players
 	player[0] = new Human_Player(CROSS_PIECE);
 	player[1] = new Computer_Player(CIRCLE_PIECE);
