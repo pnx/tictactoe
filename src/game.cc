@@ -23,7 +23,7 @@ using std::endl;
 
 void Game::Init()
 {
-    moves = 0;
+	moves = 0;
 
 	// create a board
 	board = new Board();
@@ -36,9 +36,9 @@ void Game::Init()
 	player[0]->setBoard(board);
 	player[1]->setBoard(board);
 
-    bg = new Texture("resources/bg.png");
-    cross = new Texture("resources/circle.png");
-    circle = new Texture("resources/cross.png");
+	bg = new Texture("resources/bg.png");
+	cross = new Texture("resources/circle.png");
+	circle = new Texture("resources/cross.png");
 }
 
 void Game::Exit()
@@ -53,37 +53,37 @@ void Game::Exit()
 
 void Game::Update()
 {
-    MouseState *mouse = Mouse::getState();
+	MouseState *mouse = Mouse::getState();
 
-    if (mouse->State == ButtonState::Up && mouse->Button == MouseButtons::Left) {
-        moves++;
-        cout << "Moves: " << moves << endl;
-        cout << "Mouse cords: x = " << mouse->x << ", y = " << mouse->y << endl;
+	if (mouse->State == ButtonState::Up && mouse->Button == MouseButtons::Left) {
+		moves++;
+		cout << "Moves: " << moves << endl;
+		cout << "Mouse cords: x = " << mouse->x << ", y = " << mouse->y << endl;
 
-        // shift middle square between two pieces.
-        // (just to make something happend on input)
-        if (board->hasPiece(4, SQUARE_CROSS)) {
-            board->setPiece(4, SQUARE_CIRCLE);
-        } else {
-            board->setPiece(4, SQUARE_CROSS);
-        }
-    }
+		// shift middle square between two pieces.
+		// (just to make something happend on input)
+		if (board->hasPiece(4, SQUARE_CROSS)) {
+			board->setPiece(4, SQUARE_CIRCLE);
+		} else {
+			board->setPiece(4, SQUARE_CROSS);
+		}
+	}
 }
 
 void Game::Render()
 {
-    // TODO: needs refactoring.
-    for(int i=0; i < N_SQUARES; i++) {
+	// TODO: needs refactoring.
+	for(int i=0; i < N_SQUARES; i++) {
 
-        Texture *txt;
+		Texture *txt;
 
-        if (board->hasPiece(i, SQUARE_CROSS)) {
-            txt = cross;
-        } else if (board->hasPiece(i, SQUARE_CIRCLE)) {
-            txt = circle;
-        } else {
-            txt = bg;
-        }
+		if (board->hasPiece(i, SQUARE_CROSS)) {
+			txt = cross;
+		} else if (board->hasPiece(i, SQUARE_CIRCLE)) {
+			txt = circle;
+		} else {
+			txt = bg;
+		}
 
 		txt->Draw((txt->getWidth() + 1) * (i % 3), (txt->getHeight() + 1) * (i / 3));
 	}

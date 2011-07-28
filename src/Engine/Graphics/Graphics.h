@@ -7,22 +7,22 @@
 class Graphics
 {
 private:
-    int height;
-    int width;
-    int bpp;
-    unsigned SDLflags;
-    SDL_Surface* screen;
+	int height;
+	int width;
+	int bpp;
+	unsigned SDLflags;
+	SDL_Surface* screen;
 
-    void InitGL();
+	void InitGL();
 public:
-    Graphics(int width, int height, int bpp);
-    ~Graphics();
+	Graphics(int width, int height, int bpp);
+	~Graphics();
 
-    void ResizeScreen(int width, int height);
+	void ResizeScreen(int width, int height);
 
-    void ClearScreen();
+	void ClearScreen();
 
-    void Draw();
+	void Draw();
 };
 
 #endif /* ENGINE_GRAPHICS_GRAPHICS_H */

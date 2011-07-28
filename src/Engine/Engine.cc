@@ -7,87 +7,87 @@ using std::endl;
 
 Engine::Engine()
 {
-    graphics = new Graphics(640, 480, 16);
-    isActive = false;
-    FixedStep = true;
-    FixedStepInterval = 10;
+	graphics = new Graphics(640, 480, 16);
+	isActive = false;
+	FixedStep = true;
+	FixedStepInterval = 10;
 }
 
 Engine::~Engine()
 {
-    delete graphics;
+	delete graphics;
 }
 
 void Engine::Start() {
 
-    Init();
+	Init();
 
-    SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
+	SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
 
-    LastTick = SDL_GetTicks();
+	LastTick = SDL_GetTicks();
 
-    isActive = true;
-    while(isActive) {
-        if (FixedStep) {
-            long delta = SDL_GetTicks() - LastTick;
-            if (delta >= FixedStepInterval) {
-                Tick();
-            }
-        } else {
-            Tick();
-        }
-        SDL_Delay(1);
-    }
+	isActive = true;
+	while(isActive) {
+		if (FixedStep) {
+			long delta = SDL_GetTicks() - LastTick;
+			if (delta >= FixedStepInterval) {
+				Tick();
+			}
+		} else {
+			Tick();
+		}
+		SDL_Delay(1);
+	}
 
-    Exit();
+	Exit();
 }
 
 void Engine::Tick()
 {
-    HandleInput();
+	HandleInput();
 
-    if (!isActive) {
-        return;
-    }
+	if (!isActive) {
+		return;
+	}
 
-    // update and render
-    DoUpdate();
-    DoRender();
+	// update and render
+	DoUpdate();
+	DoRender();
 
-    LastTick = SDL_GetTicks();
+	LastTick = SDL_GetTicks();
 }
 
 void Engine::HandleInput()
 {
-    SDL_Event event;
+	SDL_Event event;
 
-    Mouse::Update();
+	Mouse::Update();
 
-    while(SDL_PollEvent(&event)) {
+	while(SDL_PollEvent(&event)) {
 
-        switch(event.type) {
-        case SDL_QUIT :
-            isActive = false;
-            break;
-        case SDL_VIDEORESIZE:
-            graphics->ResizeScreen(event.resize.w, event.resize.h);
-            break;
-        case SDL_VIDEOEXPOSE:
-            // Rerender screen
-            DoRender();
-            break;
-        }
-    }
+		switch(event.type) {
+		case SDL_QUIT :
+			isActive = false;
+			break;
+		case SDL_VIDEORESIZE:
+			graphics->ResizeScreen(event.resize.w, event.resize.h);
+			break;
+		case SDL_VIDEOEXPOSE:
+			// Rerender screen
+			DoRender();
+			break;
+		}
+	}
 }
 
 void Engine::DoRender()
 {
-    graphics->ClearScreen();
-    Render();
-    graphics->Draw();
+	graphics->ClearScreen();
+	Render();
+	graphics->Draw();
 }
 
 void Engine::DoUpdate()
 {
-    Update();
+	Update();
 }

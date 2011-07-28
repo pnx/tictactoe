@@ -86,7 +86,7 @@ int Computer_Player::aiRandom()
 		position = rand() % N_SQUARES;
 
 		// rest some time to free CPU cycles to the operating system
-        msleep(1);
+		msleep(1);
 
 	} while(!board->hasPiece(position, piece_type));
 
@@ -145,7 +145,7 @@ int Computer_Player::aiFrom()
 
 		// check both patterns
 		if (!aiBlockPattern(map[i]) &&
-            !aiBlockPattern(map[i+1])) {
+			!aiBlockPattern(map[i+1])) {
 			return map[i][0];
 		}
 	}
@@ -157,18 +157,18 @@ int Computer_Player::aiFrom()
 			continue;
 
 		if (!aiBlockPattern(map[i]) &&
-            !aiBlockPattern(map[i+1]) &&
-            !aiBlockPattern(map[i+2])) {
+			!aiBlockPattern(map[i+1]) &&
+			!aiBlockPattern(map[i+2])) {
 			return map[i][0];
 		}
 	}
 
 	// middle
 	if (board->hasPiece(4, piece_type) &&
-        !aiBlockPattern(map[0]) &&
-        !aiBlockPattern(map[1]) &&
-        !aiBlockPattern(map[2]) &&
-        !aiBlockPattern(map[3])) {
+		!aiBlockPattern(map[0]) &&
+		!aiBlockPattern(map[1]) &&
+		!aiBlockPattern(map[2]) &&
+		!aiBlockPattern(map[3])) {
 		return 4;
 	}
 

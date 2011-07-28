@@ -32,11 +32,11 @@ private :
 
 	/* set of players */
 	Player *player[N_PLAYERS];
-	
+
 	Texture *bg;
 	Texture *cross;
 	Texture *circle;
-	
+
 public :
 
 	void Init();
