@@ -14,44 +14,33 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 
-/* Character representations */
-#define M_EMPTY	 0x20 /* whitespace */
-#define M_CROSS  0x58 /* ASCII X */
-#define M_CIRCLE 0x4F /* ASCII O */
-
 /* types of piece's a square can be */
-#define NO_PIECE     0
-#define CIRCLE_PIECE 1
-#define CROSS_PIECE  2
+typedef enum {
+	SQUARE_EMPTY = 0,
+	SQUARE_CIRCLE,
+	SQUARE_CROSS
+} SquareType;
 
 class Square
 {
 private:
-	
-	// *_PIECE Constants
-	int piece_type;
+	SquareType type;
 
 public:
-	
+
 	Square();
-	
+
 	/* setFree: mark this square as free */
 	void setFree();
-	
+
 	/* isFree: returns true if square is free, false otherwise. */
 	bool isFree();
-	
+
 	/* setPiece: set this square as piece_type */
-	void setPiece(int piece_type);
-	
+	void setType(SquareType type);
+
 	/* getPiece: returns the piece of this square */
-	int getPiece() { return piece_type; };
-	
-	/* hasPiece: return true if square is piece_type, false otherwise. */
-	bool hasPiece(int piece_type);
-	
-	/* getMarker: returns the symbol representation of this square */
-	char getMarker();
+	SquareType getType() { return type; };
 };
 
 #endif

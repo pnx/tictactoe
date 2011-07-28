@@ -29,8 +29,8 @@ void Game::Init()
 	board = new Board();
 
 	// create players
-	player[0] = new Human_Player(CROSS_PIECE);
-	player[1] = new Computer_Player(CIRCLE_PIECE);
+	player[0] = new Human_Player(SQUARE_CIRCLE);
+	player[1] = new Computer_Player(SQUARE_CROSS);
 
 	// pass board to players
 	player[0]->setBoard(board);
@@ -62,10 +62,10 @@ void Game::Update()
 
         // shift middle square between two pieces.
         // (just to make something happend on input)
-        if (board->hasPiece(4, CROSS_PIECE)) {
-            board->setPiece(4, CIRCLE_PIECE);
+        if (board->hasPiece(4, SQUARE_CROSS)) {
+            board->setPiece(4, SQUARE_CIRCLE);
         } else {
-            board->setPiece(4, CROSS_PIECE);
+            board->setPiece(4, SQUARE_CROSS);
         }
     }
 }
@@ -77,9 +77,9 @@ void Game::Render()
 
         Texture *txt;
 
-        if (board->hasPiece(i, CROSS_PIECE)) {
+        if (board->hasPiece(i, SQUARE_CROSS)) {
             txt = cross;
-        } else if (board->hasPiece(i, CIRCLE_PIECE)) {
+        } else if (board->hasPiece(i, SQUARE_CIRCLE)) {
             txt = circle;
         } else {
             txt = bg;

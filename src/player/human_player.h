@@ -19,7 +19,7 @@
 class Human_Player : public Player
 {
 public :
-	Human_Player(int piece_type);
+	Human_Player(SquareType piece_type);
 
 	~Human_Player();
 

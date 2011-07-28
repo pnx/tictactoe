@@ -13,7 +13,7 @@
 
 #include "square.h"
 
-Square::Square() 
+Square::Square()
 {
 	// a new square is free
 	setFree();
@@ -21,33 +21,15 @@ Square::Square()
 
 bool Square::isFree()
 {
-    return piece_type == NO_PIECE;
+	return type == SQUARE_EMPTY;
 }
 
-void Square::setFree() 
+void Square::setFree()
 {
-	piece_type = NO_PIECE;
+	type = SQUARE_EMPTY;
 }
 
-void Square::setPiece(int piece_type) 
+void Square::setType(SquareType type)
 {
-	this->piece_type = piece_type;
+	this->type = type;
 }
-
-bool Square::hasPiece(int piece_type) 
-{
-	return this->piece_type == piece_type;
-}
-
-char Square::getMarker()
-{
-	switch(piece_type) {
-    case CIRCLE_PIECE :
-        return M_CIRCLE;
-    case CROSS_PIECE :
-        return M_CROSS;
-    default :
-        return M_EMPTY;
-	}
-}
-

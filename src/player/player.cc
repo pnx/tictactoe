@@ -11,10 +11,14 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <assert.h>
 #include "player.h"
 
-Player::Player(int piece_type)
+Player::Player(SquareType piece_type)
 {
+	// Do not allow a player to play with "empty" pieces.
+	assert(piece_type != SQUARE_EMPTY);
+
 	this->piece_type = piece_type;
 }
 
@@ -29,7 +33,7 @@ bool Player::isWinner()
 
 string Player::getPiece()
 {
-	return (piece_type == CROSS_PIECE) 
+	return (piece_type == SQUARE_CROSS)
 		 ? "CROSSES" : "CIRCLES";
 }
 
@@ -38,7 +42,7 @@ int Player::getNumPieces()
 	return board->numberOfPieces(piece_type);
 }
 
-void Player::setBoard(Board *board) 
+void Player::setBoard(Board *board)
 {
 	this->board = board;
 }

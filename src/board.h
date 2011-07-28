@@ -38,10 +38,10 @@ public:
 	~Board();
 
 	/* numberOfPieces: returns the number of piece_type pieces placed on the board */
-	int numberOfPieces(int piece_type);
+	int numberOfPieces(SquareType type);
 
 	/* setPiece: sets a piece of piece_type on position */
-	void setPiece(int position, int piece_type);
+	void setPiece(int position, SquareType type);
 
 	/* delPiece: deletes the piece on position */
 	void delPiece(int position);
@@ -50,13 +50,13 @@ public:
 	bool isFree(int position);
 
 	/* hasPiece: returns true if position has a piece of piece_type, false otherwise */
-	bool hasPiece(int position, int piece_type);
+	bool hasPiece(int position, SquareType type);
 
 	/* hasCounterPiece: returns true if position occupied but IS NOT piece_type, false otherwise */
-	bool hasCounterPiece(int position, int piece_type);
+	bool hasCounterPiece(int position, SquareType type);
 
 	/* checkPattern: checks if a board has a win pattern of piece_type */
-	bool checkPattern(int piece_type);
+	bool checkPattern(SquareType type);
 };
 
 #endif

@@ -36,26 +36,26 @@ bool Board::validSquare(int position)
 	return true;
 }
 
-int Board::numberOfPieces(int piece_type)
+int Board::numberOfPieces(SquareType type)
 {
 	int i, m = 0;
 
 	for(i=0; i < N_SQUARES; i++) {
 
 		// count this square if matched
-		if (square[i].hasPiece(piece_type) && ++m == 3)
+		if (square[i].getType() == type && ++m == 3)
 			break;
 	}
 
 	return m;
 }
 
-void Board::setPiece(int position, int piece_type)
+void Board::setPiece(int position, SquareType type)
 {
 	if (!validSquare(position))
 		return;
 
-    square[position].setPiece(piece_type);
+    square[position].setType(type);
 }
 
 void Board::delPiece(int position)
@@ -74,29 +74,30 @@ bool Board::isFree(int position)
 	return square[position].isFree();
 }
 
-bool Board::hasPiece(int position, int piece_type)
+bool Board::hasPiece(int position, SquareType type)
 {
 	if (!validSquare(position))
 		return false;
 
-	return square[position].hasPiece(piece_type);
+	return square[position].getType() == type;
 }
 
-bool Board::hasCounterPiece(int position, int piece_type)
+bool Board::hasCounterPiece(int position, SquareType type)
 {
 	if (!validSquare(position))
 		return false;
 
-	return !square[position].isFree() && !square[position].hasPiece(piece_type);
+	return !square[position].isFree() &&
+		square[position].getType() != type;
 }
 
-bool Board::checkPattern(int piece_type)
+bool Board::checkPattern(SquareType type)
 {
 	int i, j;
 
 	for(i=0; i < 3; i++) {
 		for(j=0; j < 3; j++) {
-			if (!square[(i*3)+j].hasPiece(piece_type))
+			if (square[(i*3)+j].getType() != type)
 				break;
 
 			if (j == 2)
@@ -104,7 +105,7 @@ bool Board::checkPattern(int piece_type)
 		}
 
 		for(j=0; j < 3; j++) {
-			if (!square[i+(j*3)].hasPiece(piece_type))
+			if (square[i+(j*3)].getType() != type)
 				break;
 
 			if (j == 2)
@@ -115,7 +116,7 @@ bool Board::checkPattern(int piece_type)
 	/* Diagonal */
 
 	for(i=0; i < 3; i++) {
-		if (!square[4*i].hasPiece(piece_type))
+		if (square[4*i].getType() != type)
 			break;
 
 		if (i == 2)
@@ -123,7 +124,7 @@ bool Board::checkPattern(int piece_type)
 	}
 
 	for(i=1; i <= 3; i++) {
-		if (!square[2*i].hasPiece(piece_type))
+		if (square[2*i].getType() != type)
 			break;
 
 		if (i == 3)
