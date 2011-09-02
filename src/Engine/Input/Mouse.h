@@ -2,6 +2,8 @@
 #ifndef ENGINE_INPUT_MOUSE_H
 #define ENGINE_INPUT_MOUSE_H
 
+#include "../Math/MathTypes.h"
+
 namespace MouseButtons {
 	enum MouseButtons {
 		None, Right, Left, Middle
@@ -19,8 +21,7 @@ typedef ButtonState::ButtonState ButtonStateType;
 typedef struct {
 	MouseButtonsType Button;
 	ButtonStateType State;
-	int x;
-	int y;
+	cord2f point;
 } MouseState;
 
 class Mouse {

@@ -36,6 +36,11 @@ bool Board::validSquare(int position)
 	return true;
 }
 
+Square* Board::getSquare(int index)
+{
+	return &square[index];
+}
+
 int Board::numberOfPieces(SquareType type)
 {
 	int i, m = 0;
@@ -55,7 +60,7 @@ void Board::setPiece(int position, SquareType type)
 	if (!validSquare(position))
 		return;
 
-    square[position].setType(type);
+	square[position].setType(type);
 }
 
 void Board::delPiece(int position)

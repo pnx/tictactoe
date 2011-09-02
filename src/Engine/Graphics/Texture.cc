@@ -94,6 +94,11 @@ void Texture::Delete()
 
 void Texture::Draw(GLint x, GLint y)
 {
+	Draw(x, y, height, width);
+}
+
+void Texture::Draw(GLint x, GLint y, unsigned height, unsigned width)
+{
 	if (this->id < 1) {
 		return;
 	}

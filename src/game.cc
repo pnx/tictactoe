@@ -37,8 +37,22 @@ void Game::Init()
 	player[1]->setBoard(board);
 
 	bg = new Texture("resources/bg.png");
-	cross = new Texture("resources/circle.png");
-	circle = new Texture("resources/cross.png");
+	cross = new Texture("resources/cross.png");
+	circle = new Texture("resources/circle.png");
+
+	// setup squares
+	for(int i = 0; i < N_SQUARES; i++) {
+		Square *s = board->getSquare(i);
+		cord2f pos;
+
+		s->height = bg->getHeight();
+		s->width = bg->getWidth();
+
+		pos.x = (bg->getWidth() + 1) * (i % 3);
+		pos.y = (bg->getHeight() + 1) * (i / 3);
+
+		s->setPosition(pos);
+	}
 }
 
 void Game::Exit()
@@ -56,16 +70,15 @@ void Game::Update()
 	MouseState *mouse = Mouse::getState();
 
 	if (mouse->State == ButtonState::Up && mouse->Button == MouseButtons::Left) {
-		moves++;
-		cout << "Moves: " << moves << endl;
-		cout << "Mouse cords: x = " << mouse->x << ", y = " << mouse->y << endl;
 
-		// shift middle square between two pieces.
-		// (just to make something happend on input)
-		if (board->hasPiece(4, SQUARE_CROSS)) {
-			board->setPiece(4, SQUARE_CIRCLE);
-		} else {
-			board->setPiece(4, SQUARE_CROSS);
+		for(int i = 0; i < N_SQUARES; i++) {
+			Square *s = board->getSquare(i);
+
+			if (s->Intersect(mouse->point)) {
+				s->setType(SQUARE_CIRCLE);
+				moves++;
+				break;
+			}
 		}
 	}
 }
@@ -74,17 +87,15 @@ void Game::Render()
 {
 	// TODO: needs refactoring.
 	for(int i=0; i < N_SQUARES; i++) {
+		Texture *t = bg;
+		Square *s = board->getSquare(i);
 
-		Texture *txt;
-
-		if (board->hasPiece(i, SQUARE_CROSS)) {
-			txt = cross;
-		} else if (board->hasPiece(i, SQUARE_CIRCLE)) {
-			txt = circle;
-		} else {
-			txt = bg;
+		if (s->getType() == SQUARE_CROSS) {
+			t = cross;
+		} else if (s->getType() == SQUARE_CIRCLE) {
+			t = circle;
 		}
 
-		txt->Draw((txt->getWidth() + 1) * (i % 3), (txt->getHeight() + 1) * (i / 3));
+		s->Draw(t);
 	}
 }

@@ -37,6 +37,8 @@ public:
 	/* Destructor */
 	~Board();
 
+	Square* getSquare(int index);
+
 	/* numberOfPieces: returns the number of piece_type pieces placed on the board */
 	int numberOfPieces(SquareType type);
 

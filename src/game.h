@@ -40,9 +40,9 @@ private :
 public :
 
 	void Init();
-    void Update();
-    void Render();
-    void Exit();
+	void Update();
+	void Render();
+	void Exit();
 };
 
 #endif

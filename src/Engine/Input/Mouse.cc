@@ -4,7 +4,7 @@
 #include "SDL.h"
 
 MouseState Mouse::mState = {
-	MouseButtons::None, ButtonState::None, 0, 0
+	MouseButtons::None, ButtonState::None
 };
 
 MouseState* Mouse::getState()
@@ -14,11 +14,16 @@ MouseState* Mouse::getState()
 
 void Mouse::Update()
 {
+	int x, y;
 	Uint8 mask;
 
 	SDL_PumpEvents();
 
-	mask = SDL_GetMouseState(&mState.x, &mState.y);
+	mask = SDL_GetMouseState(&x, &y);
+
+	mState.point.x = (float) x;
+	mState.point.y = (float) y;
+
 	if (mask) {
 		mState.State = ButtonState::Down;
 		if (mask & SDL_BUTTON_LMASK) {
