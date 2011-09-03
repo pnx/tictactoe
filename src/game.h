@@ -36,6 +36,8 @@ private :
 	// index of the current player
 	unsigned int current_player;
 
+	bool inProgress;
+
 	Texture *bg;
 	Texture *cross;
 	Texture *circle;

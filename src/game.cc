@@ -25,6 +25,8 @@ void Game::Init()
 {
 	moves = 0;
 
+	inProgress = true;
+
 	// create a board
 	board = new Board();
 
@@ -69,9 +71,16 @@ void Game::Exit()
 
 void Game::Update()
 {
+	if (!inProgress) {
+		return;
+	}
+
 	if (player[current_player]->makeMove()) {
 		moves++;
 
+		if (player[current_player]->isWinner()) {
+			inProgress = false;
+		}
 		current_player = (current_player + 1) % N_PLAYERS;
 	}
 }
