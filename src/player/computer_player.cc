@@ -208,26 +208,29 @@ int Computer_Player::aiTo(int index)
 	return aiBestMove(index);
 }
 
-void Computer_Player::makeMove()
+bool Computer_Player::makeMove()
 {
 	int from = -1;
 	int to;
 
+/*
 	// remove one square
 	if (board->numberOfPieces(piece_type) >= 3) {
 		from = aiFrom();
 
 		board->delPiece(from);
 	}
+*/
 
 	// find a square to move to
 	to = aiTo(from);
 
 	if (to == -1) {
 		cerr << "AI ERROR: can't make move" << endl;
-		return;
+		return false;
 	}
 
 	// make move
 	board->setPiece(to, piece_type);
+	return true;
 }

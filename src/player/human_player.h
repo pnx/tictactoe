@@ -24,7 +24,7 @@ public :
 	~Human_Player();
 
 	/* makeMove: makes a move on the board */
-	void makeMove();
+	bool makeMove();
 };
 
 #endif

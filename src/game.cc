@@ -36,6 +36,8 @@ void Game::Init()
 	player[0]->setBoard(board);
 	player[1]->setBoard(board);
 
+	current_player = 0;
+
 	bg = new Texture("resources/bg.png");
 	cross = new Texture("resources/cross.png");
 	circle = new Texture("resources/circle.png");
@@ -67,19 +69,10 @@ void Game::Exit()
 
 void Game::Update()
 {
-	MouseState *mouse = Mouse::getState();
+	if (player[current_player]->makeMove()) {
+		moves++;
 
-	if (mouse->State == ButtonState::Up && mouse->Button == MouseButtons::Left) {
-
-		for(int i = 0; i < N_SQUARES; i++) {
-			Square *s = board->getSquare(i);
-
-			if (s->Intersect(mouse->point)) {
-				s->setType(SQUARE_CIRCLE);
-				moves++;
-				break;
-			}
-		}
+		current_player = (current_player + 1) % N_PLAYERS;
 	}
 }
 

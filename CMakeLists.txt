@@ -15,6 +15,8 @@ if (HAVE_WINDOWS_H)
     add_definitions(-DHAVE_WINDOWS_H=1)
 endif ()
 
+add_definitions(-Isrc)
+
 find_package(SDL)
 
 if (SDL_FOUND)

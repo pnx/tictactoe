@@ -33,6 +33,9 @@ private :
 	/* set of players */
 	Player *player[N_PLAYERS];
 
+	// index of the current player
+	unsigned int current_player;
+
 	Texture *bg;
 	Texture *cross;
 	Texture *circle;

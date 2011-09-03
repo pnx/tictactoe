@@ -38,7 +38,7 @@ public :
 	virtual ~Player();
 
 	/* makeMove: abstract method that makes a move on the board */
-	virtual void makeMove() = 0;
+	virtual bool makeMove() = 0;
 
 	/* setBoard: sets the board used */
 	void setBoard(Board *board);
