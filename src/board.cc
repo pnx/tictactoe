@@ -65,7 +65,7 @@ void Board::setPiece(int position, SquareType type)
 
 void Board::delPiece(int position)
 {
-    if (!validSquare(position))
+	if (!validSquare(position))
 		return;
 
 	square[position].setFree();
