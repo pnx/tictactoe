@@ -78,7 +78,7 @@ void Game::Update()
 	if (player[current_player]->makeMove()) {
 		moves++;
 
-		if (player[current_player]->isWinner()) {
+		if (player[current_player]->isWinner() || board->isDraw()) {
 			inProgress = false;
 		}
 		current_player = (current_player + 1) % N_PLAYERS;
