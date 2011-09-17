@@ -138,3 +138,15 @@ bool Board::checkPattern(SquareType type)
 
 	return false;
 }
+
+bool Board::isDraw(void)
+{
+	int i;
+
+	for(i=0; i < N_SQUARES; i++) {
+
+		if (square[i].getType() == SQUARE_EMPTY)
+			return false;
+	}
+	return true;
+}

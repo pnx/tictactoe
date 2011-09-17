@@ -59,6 +59,8 @@ public:
 
 	/* checkPattern: checks if a board has a win pattern of piece_type */
 	bool checkPattern(SquareType type);
+
+	bool isDraw(void);
 };
 
 #endif
