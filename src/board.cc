@@ -48,8 +48,8 @@ int Board::numberOfPieces(SquareType type)
 	for(i=0; i < N_SQUARES; i++) {
 
 		// count this square if matched
-		if (square[i].getType() == type && ++m == 3)
-			break;
+		if (square[i].getType() == type)
+			m++;
 	}
 
 	return m;
