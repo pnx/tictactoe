@@ -30,7 +30,7 @@ void Engine::Start() {
 	while(isActive) {
 		if (FixedStep) {
 			long delta = SDL_GetTicks() - LastTick;
-			if (delta >= FixedStepInterval) {
+			if (delta >= (long) FixedStepInterval) {
 				Tick();
 			}
 		} else {
