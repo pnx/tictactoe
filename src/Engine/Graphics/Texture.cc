@@ -84,15 +84,18 @@ void Texture::Delete()
 	}
 }
 
-void Texture::Draw(GLint x, GLint y)
-{
-	Draw(x, y, height, width);
-}
-
 void Texture::Draw(GLint x, GLint y, unsigned height, unsigned width)
 {
 	if (this->id < 1) {
 		return;
+	}
+
+	if (height < 1) {
+		height = this->height;
+	}
+
+	if (width < 1) {
+		width = this->width;
 	}
 
 	glPushMatrix();

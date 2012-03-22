@@ -26,9 +26,7 @@ public :
 
 	void Delete();
 
-	void Draw(GLint x, GLint y);
-
-	void Draw(GLint x, GLint y, unsigned height, unsigned width);
+	void Draw(GLint x, GLint y, unsigned height = 0, unsigned width = 0);
 };
 
 #endif /* ENGINE_GRAPHICS_TEXTURE_H */
