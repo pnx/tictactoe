@@ -18,14 +18,20 @@ endif ()
 add_definitions(-Isrc)
 
 find_package(SDL REQUIRED)
+find_package(SDL_image REQUIRED)
 find_package(OpenGL REQUIRED)
 
 if (NOT SDL_FOUND)
     message(FATAL_ERROR "SDL not found")
 endif()
 
+if (NOT SDLIMAGE_FOUND)
+    message(FATAL_ERROR "SDL_image not found")
+endif()
+
+
 include_directories(${SDL_INCLUDE_DIR})
-set (libs ${libs} ${OPENGL_LIBRARY} ${SDL_LIBRARY} -lSDL_image)
+set (libs ${libs} ${OPENGL_LIBRARY} ${SDL_LIBRARY} ${SDLIMAGE_LIBRARY})
 
 set (src_engine src/Engine/Engine.cc src/Engine/Graphics/Graphics.cc src/Engine/Graphics/Texture.cc
                 src/Engine/Entity.cc src/Engine/Input/Mouse.cc)
