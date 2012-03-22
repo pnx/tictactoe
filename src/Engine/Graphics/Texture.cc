@@ -58,14 +58,6 @@ void Texture::Load(std::string filename)
 		glTexImage2D(GL_TEXTURE_2D, 0, channels, this->width, this->height, 0,
 			format, GL_UNSIGNED_BYTE, surface->pixels);
 
-		// flip the image.
-		glMatrixMode(GL_TEXTURE);
-		glLoadIdentity();
-		glTranslatef(0.5f, 0.5f, 0.0f);
-		glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-		glTranslatef(-0.5f, -0.5f, 0.0f);
-		glMatrixMode(GL_MODELVIEW);
-
 		if (this->id) {
 			glDeleteTextures(1, &this->id);
 		}
@@ -112,19 +104,19 @@ void Texture::Draw(GLint x, GLint y, unsigned height, unsigned width)
 
 	//Bottom-left vertex
 	glTexCoord2i(0, 0);
-	glVertex2f(0, height);
+	glVertex2i(0, 0);
 
 	//Bottom-right vertex
 	glTexCoord2i(1, 0);
-	glVertex2f(width, height);
+	glVertex2i(width, 0);
 
 	//Top-right vertex
 	glTexCoord2i(1, 1);
-	glVertex2f(width, 0);
+	glVertex2i(width, height);
 
 	//Top-left vertex
 	glTexCoord2i(0, 1);
-	glVertex2f(0, 0);
+	glVertex2i(0, height);
 
 	glEnd();
 
