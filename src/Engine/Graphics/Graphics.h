@@ -13,6 +13,7 @@ private:
 	unsigned SDLflags;
 	SDL_Surface* screen;
 
+	void InitWindow();
 	void InitGL();
 public:
 	Graphics(int width, int height, int bpp);

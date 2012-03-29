@@ -42,6 +42,24 @@ Graphics::~Graphics()
 	SDL_Quit();
 }
 
+void Graphics::InitWindow()
+{
+	SDL_Surface *newscreen = SDL_SetVideoMode(width, height, bpp, SDLflags);
+	if (newscreen == NULL) {
+		if (screen == NULL) {
+			std::cerr << "Unable to set up video: " << SDL_GetError() << std::endl;
+			exit(1);
+		}
+		std::cerr << "Unable to change size: " << SDL_GetError() << std::endl;
+		return;
+	}
+
+	if (screen) {
+		SDL_FreeSurface(screen);
+	}
+	screen = newscreen;
+}
+
 void Graphics::InitGL()
 {
 	// setup opengl.
@@ -77,13 +95,12 @@ void Graphics::SetResizeAble(bool value)
 	SDLflags = (value) ? SDLflags | SDL_RESIZABLE
 			: SDLflags & ~SDL_RESIZABLE;
 
-	ResizeScreen(width, height);
+	// Initialize window with new flags
+	InitWindow();
 }
 
 void Graphics::ResizeScreen(int width, int height)
 {
-	SDL_Surface *newscreen;
-
 	if (height < 64) {
 		height = 64;
 	}
@@ -95,21 +112,7 @@ void Graphics::ResizeScreen(int width, int height)
 	this->height = height;
 	this->width = width;
 
-	newscreen = SDL_SetVideoMode(this->width, this->height, this->bpp, this->SDLflags);
-	if (newscreen == NULL) {
-		if (screen == NULL) {
-			std::cerr << "Unable to set up video: " << SDL_GetError() << std::endl;
-			exit(1);
-		}
-		std::cerr << "Unable to change size: " << SDL_GetError() << std::endl;
-		return;
-	}
-
-	if (this->screen) {
-		SDL_FreeSurface(this->screen);
-	}
-	this->screen = newscreen;
-
+	InitWindow();
 	InitGL();
 
 #ifndef NDEBUG
