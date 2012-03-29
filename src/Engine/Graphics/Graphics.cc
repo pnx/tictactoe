@@ -67,6 +67,19 @@ void Graphics::InitGL()
 	glLoadIdentity();
 }
 
+bool Graphics::IsResizeAble()
+{
+	return SDLflags & SDL_RESIZABLE;
+}
+
+void Graphics::SetResizeAble(bool value)
+{
+	SDLflags = (value) ? SDLflags | SDL_RESIZABLE
+			: SDLflags & ~SDL_RESIZABLE;
+
+	ResizeScreen(width, height);
+}
+
 void Graphics::ResizeScreen(int width, int height)
 {
 	SDL_Surface *newscreen;

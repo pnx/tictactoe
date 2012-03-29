@@ -23,6 +23,8 @@ using std::endl;
 
 void Game::Init()
 {
+	graphics->SetResizeAble(false);
+
 	moves = 0;
 
 	inProgress = true;

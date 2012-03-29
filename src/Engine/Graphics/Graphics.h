@@ -18,6 +18,9 @@ public:
 	Graphics(int width, int height, int bpp);
 	~Graphics();
 
+	bool IsResizeAble();
+	void SetResizeAble(bool value);
+
 	void ResizeScreen(int width, int height);
 
 	void ClearScreen();
