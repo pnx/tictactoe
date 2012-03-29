@@ -39,6 +39,10 @@ Graphics::Graphics(int width, int height, int bpp)
 
 Graphics::~Graphics()
 {
+	if (screen) {
+		SDL_FreeSurface(screen);
+	}
+
 	SDL_Quit();
 }
 
