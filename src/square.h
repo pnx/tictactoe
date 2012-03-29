@@ -21,7 +21,7 @@ typedef enum {
 	SQUARE_CROSS
 } SquareType;
 
-#include "Engine/Entity.h"
+#include "gfx/Entity.h"
 
 class Square : public Entity
 {

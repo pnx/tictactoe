@@ -1,6 +1,6 @@
 
-#include "Graphics.h"
-#include "Texture.h"
+#include "Graphics/Graphics.h"
+#include "Graphics/Texture.h"
 
 Graphics::Graphics(int width, int height, int bpp)
 {

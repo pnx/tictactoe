@@ -1,7 +1,7 @@
 
 #include <iostream>
-#include "Mouse.h"
 #include "SDL.h"
+#include "Input/Mouse.h"
 
 MouseState Mouse::mState = {
 	MouseButtons::None, ButtonState::None

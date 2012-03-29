@@ -15,29 +15,20 @@ if (HAVE_WINDOWS_H)
     add_definitions(-DHAVE_WINDOWS_H=1)
 endif ()
 
-add_definitions(-Isrc)
-
 find_package(SDL REQUIRED)
-find_package(SDL_image REQUIRED)
-find_package(OpenGL REQUIRED)
 
 if (NOT SDL_FOUND)
     message(FATAL_ERROR "SDL not found")
 endif()
 
-if (NOT SDLIMAGE_FOUND)
-    message(FATAL_ERROR "SDL_image not found")
-endif()
+include_directories("libgfx/include" ${SDL_INCLUDE_DIR})
 
-
-include_directories(${SDL_INCLUDE_DIR})
-set (libs ${libs} ${OPENGL_LIBRARY} ${SDL_LIBRARY} ${SDLIMAGE_LIBRARY})
-
-set (src_engine src/Engine/Engine.cc src/Engine/Graphics/Graphics.cc src/Engine/Graphics/Texture.cc
-                src/Engine/Entity.cc src/Engine/Input/Mouse.cc)
-
-set (src_game src/main.cc src/game.cc src/board.cc src/square.cc src/player/player.cc
+set (src src/main.cc src/game.cc src/board.cc src/square.cc src/player/player.cc
               src/player/human_player.cc src/player/computer_player.cc)
 
-add_executable(tic_tac ${src_game} ${src_engine})
-target_link_libraries(tic_tac ${libs})
+add_library(libgfx STATIC IMPORTED)
+set_property(TARGET libgfx PROPERTY
+	IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libgfx/libgfx.a)
+
+add_executable(tic_tac ${src})
+target_link_libraries(tic_tac libgfx SDL GL SDL_image)

@@ -13,7 +13,7 @@
 
 #include <iostream>
 #include "human_player.h"
-#include <Engine/Input/Mouse.h>
+#include <gfx/Input/Mouse.h>
 
 using namespace std;
 
