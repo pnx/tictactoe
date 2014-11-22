@@ -40,7 +40,7 @@ void Texture::Load(std::string filename)
 			format = surface->format->Rmask == 0x000000ff ?
 				GL_RGB : GL_BGR;
 		} else {
-			std::cerr << "SDL: Invalid channels '" << channels << "'" << std::endl;
+			std::cerr << "SDL_Image: Invalid channels '" << channels << "'" << std::endl;
 			SDL_FreeSurface(surface);
 			return;
 		}
@@ -65,7 +65,7 @@ void Texture::Load(std::string filename)
 
 		SDL_FreeSurface(surface);
 	} else {
-		std::cerr << "SDL: Cant load image '" << filename << "'" << std::endl;
+		std::cerr << "SDL_Image: " << IMG_GetError() << std::endl;
 	}
 }
 
