@@ -100,6 +100,8 @@ void Texture::Draw(GLint x, GLint y, unsigned height, unsigned width)
 
 	glPushMatrix();
 
+	glEnable(GL_TEXTURE_2D);
+
 	glBindTexture(GL_TEXTURE_2D, this->id);
 	glTranslatef(x, y, 0.0f);
 
@@ -122,6 +124,8 @@ void Texture::Draw(GLint x, GLint y, unsigned height, unsigned width)
 	glVertex2i(0, height);
 
 	glEnd();
+
+	glDisable(GL_TEXTURE_2D);
 
 	glPopMatrix();
 }
