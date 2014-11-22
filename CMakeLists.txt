@@ -7,7 +7,11 @@ INCLUDE (CheckIncludeFile)
 check_include_file (unistd.h HAVE_UNISTD_H)
 check_include_file (windows.h HAVE_WINDOWS_H)
 
-add_definitions(-Wall -Werror)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+if (NOT MSVC)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+endif ()
+
 if (HAVE_UNISTD_H)
     add_definitions(-DHAVE_UNISTD_H=1)
 endif ()
