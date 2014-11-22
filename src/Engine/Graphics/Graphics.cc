@@ -69,23 +69,20 @@ void Graphics::InitGL()
 	// setup opengl.
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClearDepth(0.0f);
-	glViewport(0, 0, this->width, this->height);
 	glClear(GL_COLOR_BUFFER_BIT);
-	glMatrixMode(GL_PROJECTION);
 
+	// disable depth and light.
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glPushMatrix();
 
 	// setup ortho
 	glOrtho(0.0f, this->width, this->height, 0.0f, -1.0f, 1.0f);
+	glViewport(0, 0, this->width, this->height);
+
 	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
 	glLoadIdentity();
 }
 
