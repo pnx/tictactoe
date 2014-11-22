@@ -19,7 +19,7 @@ if (HAVE_WINDOWS_H)
     add_definitions(-DHAVE_WINDOWS_H=1)
 endif ()
 
-add_definitions(-Isrc)
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 find_package(SDL REQUIRED)
 find_package(SDL_image REQUIRED)
