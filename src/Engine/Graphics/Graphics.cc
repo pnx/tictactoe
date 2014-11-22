@@ -12,6 +12,8 @@ Graphics::Graphics(int width, int height, int bpp)
 		exit(1);
 	}
 
+	SetTitle("Window");
+
 	SDLflags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER | SDL_HWPALETTE | SDL_RESIZABLE;
 
 	videoInfo = SDL_GetVideoInfo();
@@ -33,8 +35,6 @@ Graphics::Graphics(int width, int height, int bpp)
 	this->screen = NULL;
 
 	ResizeScreen(width, height);
-
-	SDL_WM_SetCaption("Title", NULL);
 }
 
 Graphics::~Graphics()
@@ -86,6 +86,11 @@ void Graphics::InitGL()
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void Graphics::SetTitle(const std::string& title)
+{
+	SDL_WM_SetCaption(title.c_str(), NULL);
 }
 
 bool Graphics::IsResizeAble()

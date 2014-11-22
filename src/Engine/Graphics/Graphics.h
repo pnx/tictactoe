@@ -19,6 +19,8 @@ public:
 	Graphics(int width, int height, int bpp);
 	~Graphics();
 
+	void SetTitle(const std::string& title);
+
 	bool IsResizeAble();
 	void SetResizeAble(bool value);
 
