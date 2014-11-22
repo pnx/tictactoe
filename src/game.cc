@@ -24,6 +24,7 @@ using std::endl;
 void Game::Init()
 {
 	graphics->SetResizeAble(false);
+	graphics->SetTitle("TicTacToe");
 
 	moves = 0;
 
