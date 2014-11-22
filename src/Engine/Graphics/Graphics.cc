@@ -62,6 +62,8 @@ void Graphics::InitWindow()
 		SDL_FreeSurface(screen);
 	}
 	screen = newscreen;
+
+	InitGL();
 }
 
 void Graphics::InitGL()
@@ -114,7 +116,6 @@ void Graphics::ResizeScreen(int width, int height)
 	this->width = width;
 
 	InitWindow();
-	InitGL();
 
 #ifndef NDEBUG
 	std::cout << "Windowsize: " << this->width << "x" << this->height << std::endl;
